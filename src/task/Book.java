@@ -1,5 +1,7 @@
 package task;
 
+import java.util.Objects;
+
 public class Book {
     private final String name;
     private final Author author;
@@ -26,9 +28,24 @@ public class Book {
     public void setPublicationYear(Integer publicationYear) {
         this.publicationYear = publicationYear;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(name, book.name) && Objects.equals(author, book.author) && Objects.equals(publicationYear, book.publicationYear);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, author, publicationYear);
+    }
+
     public String toString() {
         return getName()+""+author.toString()+""+getPublicationYear();
     }
 
     }
+
 
